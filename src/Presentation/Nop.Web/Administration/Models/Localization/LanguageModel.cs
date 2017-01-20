@@ -16,7 +16,6 @@ namespace Nop.Admin.Models.Localization
             AvailableCurrencies = new List<SelectListItem>();
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
-            AvailableFlagFileNames = new List<SelectListItem>();
         }
 
         [NopResourceDisplayName("Admin.Configuration.Languages.Fields.Name")]
@@ -34,8 +33,6 @@ namespace Nop.Admin.Models.Localization
         //flags
         [NopResourceDisplayName("Admin.Configuration.Languages.Fields.FlagImageFileName")]
         public string FlagImageFileName { get; set; }
-        public IList<SelectListItem> AvailableFlagFileNames { get; set; }
-
 
 
         [NopResourceDisplayName("Admin.Configuration.Languages.Fields.Rtl")]

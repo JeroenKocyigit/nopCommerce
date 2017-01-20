@@ -87,24 +87,28 @@
                         @Html.NopLabelFor(model => model.FlagImageFileName)
                     </div>
                     <div class="col-md-9">
-                        <select class="form-control" id="flagImageFileName" name="FlagImageFileName">
-                            <option value="" selected="@string.IsNullOrEmpty(Model.FlagImageFileName)">
-                                @T("Admin.Configuration.Languages.Fields.FlagImageFileName.None")
-                            </option>
-
-                            @foreach (var flag in Model.AvailableFlagFileNames)
-                            {
-                                <option value="@flag.Value"
-                                        data-image="@Url.Content("~/Content/Images/flags/" + flag.Text)"
-                                        selected="@(Model.FlagImageFileName != null && flag.Value.ToLower().Equals(Model.FlagImageFileName.ToLower()))">
-                                    @flag.Value
-                                </option>
-                            }
-                        </select>
+                        @Html.NopEditorFor(model => model.FlagImageFileName, false)
                         @Html.ValidationMessageFor(model => model.FlagImageFileName)
                         <script>
                             $(function() {
-                                $('#flagImageFileName').msDropDown();
+                                $('#FlagImageFileName').kendoDropDownList({
+                                    dataTextField: "Text",
+                                    dataValueField: "Value",
+                                    valueTemplate: '<span class="image" style="background-image: url(\'@Url.Content("~/Content/Images/flags/#:data.Text#")\'); width: 16px; height: 11px;"></span><span>#:data.Value#</span>',
+                                    template: '<span class="image" style="background-image: url(\'@Url.Content("~/Content/Images/flags/#:data.Text#")\'); width: 16px; height: 11px;"></span><span>#:data.Value#</span>',
+                                    dataSource: {
+                                        transport: {
+                                            type: "json",
+                                            read: {
+                                                url: "@Html.Raw(Url.Action("GetAvailableFlagFileNames", "Language"))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                data: addAntiForgeryToken
+                                            }
+                                        }
+                                    },
+                                    height: 400
+                                }).data("kendoDropDownList");
                             });
                         </script>
                     </div>
