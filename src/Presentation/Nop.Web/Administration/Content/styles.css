@@ -330,6 +330,9 @@ td.k-state-focused.k-state-selected {
     border: 1px solid #d2d6de;
     border-radius: 0;
 }
+.form-horizontal .form-group .k-dropdown .k-dropdown-wrap .k-select{
+    width: 20px;
+}
 .form-horizontal .form-group .k-dropdown .k-dropdown-wrap.k-state-border-down {
     border-color: #3c8dbc !important;
 }

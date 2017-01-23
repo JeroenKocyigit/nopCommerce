@@ -1,9 +1,4 @@
 ﻿@model LanguageModel
-@{
-    Html.AppendScriptParts("~/Administration/Scripts/msDropDown/jquery.dd.min.js");
-    Html.AppendCssFileParts("~/Administration/Content/msDropDown/dd.css");
-}
-
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.Id)
 
@@ -106,8 +101,7 @@
                                                 data: addAntiForgeryToken
                                             }
                                         }
-                                    },
-                                    height: 400
+                                    }
                                 }).data("kendoDropDownList");
                             });
                         </script>
